@@ -1,0 +1,19 @@
+{
+  "name": "@exodus/fetch",
+  "version": "1.0.0",
+  "description": "Wrapper around global fetch / node-fetch for Electron and React",
+  "main": "index.js",
+  "browser": "index.browser.js",
+  "files": [
+    "fetch.android.js",
+    "fetch.ios.js",
+    "fetch.js",
+    "index.browser.js",
+    "index.js"
+  ],
+  "author": "Exodus",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}
