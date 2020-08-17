@@ -2,6 +2,13 @@
   "name": "@exodus/fetch",
   "version": "1.0.0",
   "description": "Wrapper around global fetch / node-fetch for Electron and React",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ExodusMovement/fetch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ExodusMovement/fetch/issues"
+  },
   "main": "index.js",
   "browser": "index.browser.js",
   "files": [
