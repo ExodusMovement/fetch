@@ -1,6 +1,6 @@
 {
   "name": "@exodus/fetch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Wrapper around global fetch / node-fetch for Electron and React",
   "repository": {
     "type": "git",
