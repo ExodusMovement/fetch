@@ -1,5 +1,5 @@
 'use strict'
 
-const fetch = window.fetch // Don't need to require node-fetch here
+// Don't need to require node-fetch here, global fetch is defined
 
 module.exports = { fetch }
