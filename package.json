@@ -12,10 +12,8 @@
   "main": "index.js",
   "browser": "index.browser.js",
   "files": [
-    "fetch.native.js",
-    "fetch.js",
-    "index.browser.js",
-    "index.js"
+    "index.js",
+    "index.browser.js"
   ],
   "author": "Exodus",
   "license": "MIT",
