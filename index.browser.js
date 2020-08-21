@@ -2,4 +2,6 @@
 
 // Don't need to require node-fetch here, global fetch is defined
 
-module.exports = { fetch }
+const fetchival = require('fetchival')
+
+module.exports = { fetch, fetchival }
