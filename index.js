@@ -1,8 +1,8 @@
 'use strict'
 
-const fetch = require('./fetch')
-const fetchival = require('fetchival')
+const { fetch, WebSocket } = require('./core')
 
+const fetchival = require('fetchival')
 if (!fetchival.fetch) fetchival.fetch = fetch
 
-module.exports = { fetch, fetchival }
+module.exports = { fetch, WebSocket, fetchival }

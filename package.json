@@ -12,8 +12,8 @@
   "main": "index.js",
   "browser": "index.browser.js",
   "files": [
-    "fetch.native.js",
-    "fetch.js",
+    "core.native.js",
+    "core.js",
     "index.browser.js",
     "index.js"
   ],
@@ -21,6 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "fetchival": "^0.3.3",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "ws": "^6.1.0"
   }
 }
