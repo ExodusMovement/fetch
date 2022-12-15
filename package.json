@@ -69,7 +69,6 @@
   "author": "Exodus",
   "license": "MIT",
   "dependencies": {
-    "fetchival": "^0.3.3",
     "node-fetch": "^2.6.0",
     "wretch": "^1.5.2",
     "ws": "^6.1.0"
