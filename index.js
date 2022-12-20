@@ -2,7 +2,6 @@
 
 const { fetch, WebSocket } = require('./core')
 
-const fetchival = require('fetchival')
-if (!fetchival.fetch) fetchival.fetch = fetch
+const fetchival = require('./fetchival') // NOTE: use /fetchival in new code
 
 module.exports = { fetch, WebSocket, fetchival }
