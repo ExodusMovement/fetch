@@ -10,8 +10,41 @@
     "url": "https://github.com/ExodusMovement/fetch/issues"
   },
   "main": "index.js",
-  "browser": "index.browser.js",
+  "exports": {
+    ".": {
+      "browser": "./index.browser.js",
+      "react-native": "./index.js",
+      "node": "./index.js",
+      "default": "./index.js"
+    },
+    "./core": {
+      "browser": "./core.browser.js",
+      "react-native": "./core.native.js",
+      "node": "./core.js",
+      "default": "./core.js"
+    },
+    "./fetchival": {
+      "browser": "./fetchival.js",
+      "react-native": "./fetchival.js",
+      "node": "./fetchival.js",
+      "default": "./fetchival.js"
+    },
+    "./wretch": {
+      "browser": "./wretch.js",
+      "react-native": "./wretch.js",
+      "node": "./wretch.js",
+      "default": "./wretch.js"
+    }
+  },
+  "browser": {
+    "./index.js": "./index.browser.js",
+    "./core.js": "./core.browser.js"
+  },
+  "react-native": {
+    "./core.js": "./core.native.js"
+  },
   "files": [
+    "core.browser.js",
     "core.native.js",
     "core.js",
     "fetchival.js",
