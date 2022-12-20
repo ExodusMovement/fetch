@@ -24,13 +24,13 @@
       "default": "./core.js"
     },
     "./fetchival": {
-      "browser": "./fetchival.js",
+      "browser": "./fetchival.browser.js",
       "react-native": "./fetchival.js",
       "node": "./fetchival.js",
       "default": "./fetchival.js"
     },
     "./wretch": {
-      "browser": "./wretch.js",
+      "browser": "./wretch.browser.js",
       "react-native": "./wretch.js",
       "node": "./wretch.js",
       "default": "./wretch.js"
@@ -47,10 +47,12 @@
     "core.browser.js",
     "core.native.js",
     "core.js",
+    "fetchival.browser.js",
     "fetchival.js",
+    "wretch.browser.js",
+    "wretch.js",
     "index.browser.js",
-    "index.js",
-    "wretch.js"
+    "index.js"
   ],
   "author": "Exodus",
   "license": "MIT",
