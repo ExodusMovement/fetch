@@ -34,6 +34,12 @@
       "react-native": "./wretch.js",
       "node": "./wretch.js",
       "default": "./wretch.js"
+    },
+    "./url": {
+      "browser": "./url.js",
+      "react-native": "./url.js",
+      "node": "./url.js",
+      "default": "./url.js"
     }
   },
   "browser": {
@@ -51,6 +57,7 @@
     "fetchival.js",
     "wretch.browser.js",
     "wretch.js",
+    "url.js",
     "index.browser.js",
     "index.js"
   ],
