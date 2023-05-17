@@ -55,6 +55,16 @@ function validateBase(url, res) {
   throw new Error('Result url does not start with the base url!')
 }
 
+function subquery(params) {
+  let entries
+  if (Object.getPrototypeOf(params) === Map.prototype) {
+    entries = [...params]
+  } else if (typeof params === 'object' && Object.getPrototypeOf(params) === Object.prototype) {
+    entries = Object.entries(params)
+  } else throw new TypeError('query can be only a Map or a plain object')
+  return entries.map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`).join('&')
+}
+
 // Returns an URL() object based on the logic above
 function url(strings, ...args) {
   if (!strings.raw) throw new TypeError('url`` should be only used as a template literal')
@@ -66,6 +76,17 @@ function url(strings, ...args) {
         return base
       }
       throw new Error('URL typed argument should always be first')
+    } else if (
+      Object.getPrototypeOf(raw) === Map.prototype ||
+      (typeof raw === 'object' && Object.getPrototypeOf(raw) === Object.prototype)
+    ) {
+      if (i === args.length - 1 && strings[i + 1] === '') {
+        if (!/^[&?]$/.test(strings[i].slice(-1))) {
+          throw new Error('Missing & or ? before object params!')
+        }
+        return subquery(raw)
+      }
+      throw new Error('Object/map params could come only at the end of the URL')
     }
     return encodeComponent(raw)
   })
