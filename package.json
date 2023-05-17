@@ -54,6 +54,10 @@
     "index.browser.js",
     "index.js"
   ],
+  "scripts": {
+    "lint": "prettier --list-different '**/*.js'",
+    "format": "prettier --write '**/*.js'"
+  },
   "author": "Exodus",
   "license": "MIT",
   "dependencies": {
@@ -61,5 +65,8 @@
     "node-fetch": "^2.6.0",
     "wretch": "^1.5.2",
     "ws": "^6.1.0"
+  },
+  "devDependencies": {
+    "prettier": "~1.14.3"
   }
 }
