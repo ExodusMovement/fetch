@@ -21,9 +21,12 @@ const urlUnwrap = (url) => {
 
 const encodeComponent = (raw) => {
   if (raw instanceof WrappedUrl) return urlUnwrap(raw)
-  const arg = String(raw)
-  if (arg == '..') throw new Error('Unexpected .. in path')
-  return encodeURIComponent(arg)
+  if (typeof raw === 'string' || typeof raw === 'number') {
+    const arg = String(raw)
+    if (arg == '..') throw new Error('Unexpected .. in path')
+    return encodeURIComponent(arg)
+  }
+  throw new TypeError('Unexpected non-primitive component type!')
 }
 
 // URI-escape all components of the string
