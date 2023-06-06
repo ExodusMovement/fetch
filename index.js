@@ -1,7 +1,9 @@
 'use strict'
 
-const { fetch, WebSocket } = require('./core')
+// NOTE: use targeted imports in new code
 
-const fetchival = require('./fetchival') // NOTE: use /fetchival in new code
+const fetch = require('./fetch')
+const WebSocket = require('./websocket')
+const fetchival = require('./fetchival')
 
 module.exports = { fetch, WebSocket, fetchival }

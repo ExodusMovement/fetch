@@ -1,5 +1,5 @@
 const fetchival = require('./fetchival.browser')
-const { fetch } = require('./core')
+const fetch = require('./fetch')
 
 if (!fetchival.fetch) fetchival.fetch = fetch
 

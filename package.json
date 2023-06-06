@@ -17,9 +17,21 @@
       "node": "./index.js",
       "default": "./index.js"
     },
+    "./fetch": {
+      "browser": "./fetch.browser.js",
+      "react-native": "./fetch.native.js",
+      "node": "./fetch.js",
+      "default": "./fetch.js"
+    },
+    "./websocket": {
+      "browser": "./websocket.browser.js",
+      "react-native": "./websocket.native.js",
+      "node": "./websocket.js",
+      "default": "./websocket.js"
+    },
     "./core": {
-      "browser": "./core.browser.js",
-      "react-native": "./core.native.js",
+      "browser": "./core.js",
+      "react-native": "./core.js",
       "node": "./core.js",
       "default": "./core.js"
     },
@@ -45,16 +57,22 @@
   "browser": {
     "./fetchival.js": "./fetchival.browser.js",
     "./wretch.js": "./wretch.browser.js",
-    "./index.js": "./index.browser.js",
-    "./core.js": "./core.browser.js"
+    "./fetch.js": "./fetch.browser.js",
+    "./websocket.js": "./websocket.browser.js",
+    "./index.js": "./index.browser.js"
   },
   "react-native": {
-    "./core.js": "./core.native.js"
+    "./fetch.js": "./fetch.native.js",
+    "./websocket.js": "./websocket.native.js"
   },
   "files": [
-    "core.browser.js",
-    "core.native.js",
     "core.js",
+    "fetch.browser.js",
+    "fetch.native.js",
+    "fetch.js",
+    "websocket.browser.js",
+    "websocket.native.js",
+    "websocket.js",
     "fetchival.browser.js",
     "fetchival.js",
     "wretch.browser.js",
