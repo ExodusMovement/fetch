@@ -43,6 +43,8 @@
     }
   },
   "browser": {
+    "./fetchival.js": "./fetchival.browser.js",
+    "./wretch.js": "./wretch.browser.js",
     "./index.js": "./index.browser.js",
     "./core.js": "./core.browser.js"
   },
