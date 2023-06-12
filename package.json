@@ -35,6 +35,12 @@
       "node": "./core.js",
       "default": "./core.js"
     },
+    "./experimental/fetchival": {
+      "browser": "./experimental/fetchival.js",
+      "react-native": "./experimental/fetchival.js",
+      "node": "./experimental/fetchival.js",
+      "default": "./experimental/fetchival.js"
+    },
     "./fetchival": {
       "browser": "./fetchival.browser.js",
       "react-native": "./fetchival.js",
@@ -66,6 +72,7 @@
     "./websocket.js": "./websocket.native.js"
   },
   "files": [
+    "experimental/fetchival.js",
     "core.js",
     "fetch.browser.js",
     "fetch.native.js",
