@@ -46,6 +46,7 @@ function fetchival(link, opts = {}) {
     return fetchival(joined, { ...opts, ...o })
   }
 
+  _.head = (params) => _fetch('HEAD', params ? url`${link}?${params}` : link, opts)
   _.get = (params) => _fetch('GET', params ? url`${link}?${params}` : link, opts)
   _.post = (data) => _fetch('POST', link, opts, data)
   _.put = (data) => _fetch('PUT', link, opts, data)
