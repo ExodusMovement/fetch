@@ -52,6 +52,24 @@ function fetchival(link, opts = {}) {
   _.put = (data) => _fetch('PUT', link, opts, data)
   _.patch = (data) => _fetch('PATCH', link, opts, data)
   _.delete = () => _fetch('DELETE', link, opts)
+  _.method = (method, ...args) => {
+    switch (method) {
+      case 'head':
+        return _.head(...args)
+      case 'get':
+        return _.get(...args)
+      case 'post':
+        return _.post(...args)
+      case 'put':
+        return _.put(...args)
+      case 'patch':
+        return _.patch(...args)
+      case 'delete':
+        return _.delete(...args)
+      default:
+        throw new Error('Unexpected method')
+    }
+  }
 
   return _
 }
