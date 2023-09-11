@@ -39,7 +39,9 @@ async function _fetch(method, url, opts, data) {
 function fetchival(url, opts = {}) {
   const _ = (sub, o = {}) => {
     // TODO: validate subpath here
-    return fetchival(`${url}/${sub}`, { ...opts, ...o })
+    const str = `${url}`
+    const joined = str.endsWith('/') ? `${url}${sub}` : `${url}/${sub}`
+    return fetchival(joined, { ...opts, ...o })
   }
 
   _.get = (params) => _fetch('GET', url + query(params), opts)
