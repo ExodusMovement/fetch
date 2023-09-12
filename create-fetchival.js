@@ -20,7 +20,7 @@ function createFetchival({ fetch }) {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        ...(opts.headers || {}),
+        ...opts.headers,
       },
       ...(data ? { body: JSON.stringify(data) } : {}),
     })

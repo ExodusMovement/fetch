@@ -8,6 +8,7 @@ tape('url', (t) => {
     t.strictEqual(Object.getPrototypeOf(val), URL.prototype, 'is an URL object')
     t.strictEqual(`${val}`, expected, `value is correct: ${expected}`)
   }
+
   t.doesNotThrow(() => {
     const base = urlBase('https://example.com/')``
     check(url`${base}${'sd/fds'}/some`, 'https://example.com/sd%2Ffds/some')

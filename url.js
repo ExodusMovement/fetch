@@ -26,6 +26,7 @@ const encodeComponent = (raw) => {
     if (arg == '..') throw new Error('Unexpected .. in path')
     return encodeURIComponent(arg)
   }
+
   throw new TypeError('Unexpected non-primitive component type!')
 }
 
@@ -75,6 +76,7 @@ function url(strings, ...args) {
         base = String(raw)
         return base
       }
+
       throw new Error('URL typed argument should always be first')
     } else if (
       Object.getPrototypeOf(raw) === Map.prototype ||
@@ -84,10 +86,13 @@ function url(strings, ...args) {
         if (!/^[&?]$/.test(strings[i].slice(-1))) {
           throw new Error('Missing & or ? before object params!')
         }
+
         return subquery(raw)
       }
+
       throw new Error('Object/map params could come only at the end of the URL')
     }
+
     return encodeComponent(raw)
   })
   const res = [strings[0], ...escaped.flatMap((arg, i) => [arg, strings[i + 1]])].join('')
