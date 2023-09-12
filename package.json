@@ -41,6 +41,9 @@
       "node": "./experimental/fetchival.js",
       "default": "./experimental/fetchival.js"
     },
+    "./experimental/create-fetchival": {
+      "default": "./experimental/create-fetchival.js"
+    },
     "./fetchival": {
       "browser": "./fetchival.browser.js",
       "react-native": "./fetchival.js",
