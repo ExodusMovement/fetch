@@ -96,6 +96,7 @@
   ],
   "scripts": {
     "lint": "eslint . --ignore-path .gitignore",
+    "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write '**/*.{md,yml}'",
     "test": "tape test/*.js | tap-spec"
   },
