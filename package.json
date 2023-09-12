@@ -79,6 +79,7 @@
   },
   "files": [
     "experimental/fetchival.js",
+    "experimental/create-fetchival.js",
     "core.js",
     "fetch.browser.js",
     "fetch.native.js",
@@ -86,6 +87,7 @@
     "websocket.browser.js",
     "websocket.native.js",
     "websocket.js",
+    "create-fetchival.js",
     "fetchival.browser.js",
     "fetchival.js",
     "wretch.browser.js",
