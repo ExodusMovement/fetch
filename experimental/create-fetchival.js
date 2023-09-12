@@ -77,6 +77,4 @@ function createFetchival({ fetch = require('../fetch') } = {}) {
   return fetchival
 }
 
-
-
 module.exports = createFetchival
