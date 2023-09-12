@@ -1,45 +1,50 @@
-const test = require('tape')
+const tape = require('tape')
 const { fetchival } = require('../index')
 
 function Captor() {
   const captor = {
     calls: [],
     async capture(...args) {
-      this.calls.push(args);
+      this.calls.push(args)
       return { status: 204 }
-    }
+    },
   }
   const capture = captor.capture.bind(captor)
   capture.calls = captor.calls
 
-  return capture;
+  return capture
 }
 
+tape('fetchival', (t) => {
+  t.test('fetches json', async () => {
+    const res = await fetchival('https://jsonplaceholder.typicode.com')('posts').get()
 
-test('fetchival concatenates subpath with base URL', (t) => {
-  const captor = Captor()
-  fetchival.fetch = captor
+    t.equals(res.length, 100)
+  })
 
-  const client = fetchival(new URL('https://wayne-foundation.com'))('register')
+  t.test('fetchival concatenates subpath with base URL', async (t) => {
+    const captor = Captor()
+    fetchival.fetch = captor
 
-  client.post({ some: 'data' })
+    const client = fetchival(new URL('https://wayne-foundation.com'))('register')
 
-  const [url] = captor.calls[0]
+    await client.post({ some: 'data' })
 
-  t.equals(url,  'https://wayne-foundation.com/register' )
-  t.end()
-})
+    const [url] = captor.calls[0]
 
-test('fetchival concatenates subpath with string base URL', (t) => {
-  const captor = Captor()
-  fetchival.fetch = captor
+    t.equals(url, 'https://wayne-foundation.com/register')
+  })
 
-  const client = fetchival('https://wayne-foundation.com')('register')
+  t.test('fetchival concatenates subpath with string base URL', async (t) => {
+    const captor = Captor()
+    fetchival.fetch = captor
 
-  client.post({ some: 'data' })
+    const client = fetchival('https://wayne-foundation.com')('register')
 
-  const [url] = captor.calls[0]
+    await client.post({ some: 'data' })
 
-  t.equals(url,  'https://wayne-foundation.com/register' )
-  t.end()
+    const [url] = captor.calls[0]
+
+    t.equals(url, 'https://wayne-foundation.com/register')
+  })
 })

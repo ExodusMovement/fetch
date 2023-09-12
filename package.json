@@ -47,6 +47,9 @@
       "node": "./fetchival.js",
       "default": "./fetchival.js"
     },
+    "./create-fetchival": {
+      "default": "./create-fetchival.js"
+    },
     "./wretch": {
       "browser": "./wretch.browser.js",
       "react-native": "./wretch.js",
