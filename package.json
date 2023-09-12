@@ -95,20 +95,23 @@
     "index.js"
   ],
   "scripts": {
-    "lint": "prettier --list-different '**/*.js'",
-    "format": "prettier --write '**/*.js'",
+    "lint": "eslint . --ignore-path .gitignore",
+    "format": "prettier --write '**/*.{md,yml}'",
     "test": "tape test/*.js | tap-spec"
   },
   "author": "Exodus",
   "license": "MIT",
   "dependencies": {
+    "eslint": "^8.49.0",
     "node-fetch": "^2.6.0",
     "wretch": "^1.5.2",
     "ws": "^6.1.0"
   },
   "devDependencies": {
+    "@exodus/eslint-config": "^5.12.0",
     "@types/tape": "^5.6.0",
-    "prettier": "~1.14.3",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.3",
     "tap-spec": "^5.0.0",
     "tape": "^5.3.1"
   }
