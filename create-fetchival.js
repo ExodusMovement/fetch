@@ -26,9 +26,9 @@ function createFetchival({ fetch }) {
     })
 
     if (res.status >= 200 && res.status < 300) {
-      if (opts.responseAs == 'response') return res
-      if (res.status == 204) return null
-      if (opts.responseAs == 'text') return res.text()
+      if (opts.responseAs === 'response') return res
+      if (res.status === 204) return null
+      if (opts.responseAs === 'text') return res.text()
       return res.json()
     }
 
