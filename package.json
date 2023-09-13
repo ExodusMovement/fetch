@@ -94,7 +94,8 @@
     "wretch.js",
     "url.js",
     "index.browser.js",
-    "index.js"
+    "index.js",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "lint": "eslint . --ignore-path .gitignore",
