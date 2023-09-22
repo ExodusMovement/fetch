@@ -2,7 +2,8 @@ const urlSymbol = Symbol('url')
 
 class WrappedUrl {
   constructor(raw, symbol) {
-    if (typeof raw !== 'string') throw new TypeError()
+    if (typeof raw !== 'string')
+      throw new TypeError('first argument of WrappedUrl constructor should be of type "string"')
     if (symbol !== urlSymbol) throw new TypeError('Use url`` to construct urls') // Just a double-check against misuse
     this[urlSymbol] = raw
   }
@@ -23,16 +24,17 @@ const encodeComponent = (raw) => {
   if (raw instanceof WrappedUrl) return urlUnwrap(raw)
   if (typeof raw === 'string' || typeof raw === 'number') {
     const arg = String(raw)
-    if (arg == '..') throw new Error('Unexpected .. in path')
+    if (arg === '..') throw new Error('Unexpected .. in path')
     return encodeURIComponent(arg)
   }
+
   throw new TypeError('Unexpected non-primitive component type!')
 }
 
 // URI-escape all components of the string
 function urlComponent(strings, ...args) {
   if (!strings.raw) throw new TypeError('urlComponent`` should be only used as a template literal')
-  const escaped = args.map(encodeComponent)
+  const escaped = args.map((arg) => encodeComponent(arg))
   const raw = [strings[0], ...escaped.flatMap((arg, i) => [arg, strings[i + 1]])].join('')
   return new WrappedUrl(raw, urlSymbol)
 }
@@ -75,6 +77,7 @@ function url(strings, ...args) {
         base = String(raw)
         return base
       }
+
       throw new Error('URL typed argument should always be first')
     } else if (
       Object.getPrototypeOf(raw) === Map.prototype ||
@@ -84,10 +87,13 @@ function url(strings, ...args) {
         if (!/^[&?]$/.test(strings[i].slice(-1))) {
           throw new Error('Missing & or ? before object params!')
         }
+
         return subquery(raw)
       }
+
       throw new Error('Object/map params could come only at the end of the URL')
     }
+
     return encodeComponent(raw)
   })
   const res = [strings[0], ...escaped.flatMap((arg, i) => [arg, strings[i + 1]])].join('')

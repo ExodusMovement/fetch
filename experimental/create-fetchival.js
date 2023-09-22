@@ -9,21 +9,21 @@ function createFetchival({ fetch = require('../fetch') } = {}) {
 
     // Unlike fetchival, don't pollute the opts object we were given
     const res = await fetch(link, {
-      timeout: 30000, // default timeout to 30s, unlike fetchival or fetch
+      timeout: 30_000, // default timeout to 30s, unlike fetchival or fetch
       ...opts,
       method,
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        ...(opts.headers || {}),
+        ...opts.headers,
       },
       ...(data ? { body: JSON.stringify(data) } : {}),
     })
 
     if (res.status >= 200 && res.status < 300) {
-      if (opts.responseAs == 'response') return res
-      if (res.status == 204) return null
-      if (opts.responseAs == 'text') return res.text()
+      if (opts.responseAs === 'response') return res
+      if (res.status === 204) return null
+      if (opts.responseAs === 'text') return res.text()
       return res.json()
     }
 

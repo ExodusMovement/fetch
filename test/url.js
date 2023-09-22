@@ -1,18 +1,19 @@
 'use strict'
 
 const tape = require('tape')
-const { url, urlComponent, urlBase, urlUnwrap } = require('../url')
+const { url, urlBase } = require('../url')
 
 tape('url', (t) => {
   const check = (val, expected) => {
     t.strictEqual(Object.getPrototypeOf(val), URL.prototype, 'is an URL object')
     t.strictEqual(`${val}`, expected, `value is correct: ${expected}`)
   }
+
   t.doesNotThrow(() => {
     const base = urlBase('https://example.com/')``
     check(url`${base}${'sd/fds'}/some`, 'https://example.com/sd%2Ffds/some')
     const sub = urlBase('/ffoo/')
-    check(url`${base}${'sd/fds'}${sub`bar/j`}`, 'https://example.com/sd%2Ffds/ffoo/bar/j')
+    check(url`${base}${'sd/fds'}${sub`bar/j`}`, 'https://example.com/sd%2Ffds/ffoo/bar/j') // eslint-disable-line sonarjs/no-nested-template-literals
   })
   t.doesNotThrow(() => {
     const base = new URL('https://example.com/foo')
