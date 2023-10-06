@@ -94,13 +94,15 @@
     "wretch.js",
     "url.js",
     "index.browser.js",
-    "index.js"
+    "index.js",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "lint": "eslint . --ignore-path .gitignore",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write '**/*.{md,yml}'",
-    "test": "tape test/*.js | tap-spec"
+    "test": "tape test/*.js | tap-spec",
+    "release": "semantic-release"
   },
   "author": "Exodus Movement Inc.",
   "license": "MIT",
@@ -116,8 +118,23 @@
     "eslint": "^8.49.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.3",
+    "semantic-release": "^21.1.1",
     "tap-spec": "^5.0.0",
-    "tape": "^5.3.1"
+    "tape": "^5.3.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
   },
-  "prettier": "@exodus/prettier"
+  "prettier": "@exodus/prettier",
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ]
+  }
 }
