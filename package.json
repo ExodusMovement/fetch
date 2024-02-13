@@ -122,19 +122,8 @@
     "tap-spec": "^5.0.0",
     "tape": "^5.3.1",
     "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1"
+    "@semantic-release/github": "^9.2.3",
+    "conventional-changelog-conventionalcommits": "^6.0.0"
   },
-  "prettier": "@exodus/prettier",
-  "release": {
-    "branches": [
-      "master"
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/git"
-    ]
-  }
+  "prettier": "@exodus/prettier"
 }
