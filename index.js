@@ -5,5 +5,6 @@
 const fetch = require('./fetch')
 const WebSocket = require('./websocket')
 const fetchival = require('./fetchival')
+const { createFetchWithHeaders } = require('./with-headers')
 
-module.exports = { fetch, WebSocket, fetchival }
+module.exports = { fetch, WebSocket, fetchival, createFetchWithHeaders }
