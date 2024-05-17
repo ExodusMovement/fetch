@@ -4,5 +4,6 @@
 // Same for global WebSocket
 
 const fetchival = require('./fetchival.browser.js')
+const fetch = require('./fetch.browser.js')
 
 module.exports = { fetch, WebSocket, fetchival }
