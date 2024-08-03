@@ -8,7 +8,7 @@ function createFetchival({ fetch = require('../fetch') } = {}) {
     if (opts.body) throw new Error('unexpected pre-set body option')
 
     // Unlike fetchival, don't pollute the opts object we were given
-    const res = await fetchival.fetch(url, {
+    const res = await fetchival.fetch(link, {
       timeout: 30_000, // default timeout to 30s, unlike fetchival or fetch
       ...opts,
       method,
