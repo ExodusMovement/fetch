@@ -12,7 +12,7 @@ if (typeof process !== 'undefined' && process) {
     module.exports = fetch
   } else {
     // Node.js or Electron browser process
-    module.exports = require('node-fetch')
+    module.exports = typeof fetch === 'undefined' ? require('node-fetch') : fetch.bind(globalThis)
   }
 } else {
   // Browser or Electron without Node.js integration
