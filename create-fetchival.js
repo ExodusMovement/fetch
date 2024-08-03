@@ -8,7 +8,7 @@ function query(params) {
     .join('&')}`
 }
 
-function createFetchival({ fetch }) {
+function createFetchival({ fetch = require('./fetch') } = {}) {
   async function _fetch(method, url, opts, data) {
     // Unlike fetchival, don't silently ignore and override
     if (opts.body) throw new Error('unexpected pre-set body option')
