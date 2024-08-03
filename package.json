@@ -17,80 +17,38 @@
       "node": "./index.js",
       "default": "./index.js"
     },
-    "./fetch": {
-      "browser": "./fetch.browser.js",
-      "react-native": "./fetch.native.js",
-      "node": "./fetch.js",
-      "default": "./fetch.js"
-    },
+    "./fetch": "./fetch.js",
     "./websocket": {
       "browser": "./websocket.browser.js",
       "react-native": "./websocket.native.js",
       "node": "./websocket.js",
       "default": "./websocket.js"
     },
-    "./core": {
-      "browser": "./core.js",
-      "react-native": "./core.js",
-      "node": "./core.js",
-      "default": "./core.js"
-    },
-    "./experimental/fetchival": {
-      "browser": "./experimental/fetchival.js",
-      "react-native": "./experimental/fetchival.js",
-      "node": "./experimental/fetchival.js",
-      "default": "./experimental/fetchival.js"
-    },
-    "./experimental/create-fetchival": {
-      "default": "./experimental/create-fetchival.js"
-    },
-    "./fetchival": {
-      "browser": "./fetchival.browser.js",
-      "react-native": "./fetchival.js",
-      "node": "./fetchival.js",
-      "default": "./fetchival.js"
-    },
-    "./create-fetchival": {
-      "default": "./create-fetchival.js"
-    },
-    "./wretch": {
-      "browser": "./wretch.browser.js",
-      "react-native": "./wretch.js",
-      "node": "./wretch.js",
-      "default": "./wretch.js"
-    },
-    "./url": {
-      "browser": "./url.js",
-      "react-native": "./url.js",
-      "node": "./url.js",
-      "default": "./url.js"
-    }
+    "./core": "./core.js",
+    "./experimental/fetchival": "./experimental/fetchival.js",
+    "./experimental/create-fetchival": "./experimental/create-fetchival.js",
+    "./fetchival": "./fetchival.js",
+    "./create-fetchival": "./create-fetchival.js",
+    "./wretch": "./wretch.js",
+    "./url": "./url.js"
   },
   "browser": {
-    "./fetchival.js": "./fetchival.browser.js",
-    "./wretch.js": "./wretch.browser.js",
-    "./fetch.js": "./fetch.browser.js",
     "./websocket.js": "./websocket.browser.js",
     "./index.js": "./index.browser.js"
   },
   "react-native": {
-    "./fetch.js": "./fetch.native.js",
     "./websocket.js": "./websocket.native.js"
   },
   "files": [
     "experimental/fetchival.js",
     "experimental/create-fetchival.js",
     "core.js",
-    "fetch.browser.js",
-    "fetch.native.js",
     "fetch.js",
     "websocket.browser.js",
     "websocket.native.js",
     "websocket.js",
     "create-fetchival.js",
-    "fetchival.browser.js",
     "fetchival.js",
-    "wretch.browser.js",
     "wretch.js",
     "url.js",
     "index.browser.js",
@@ -107,7 +65,6 @@
   "author": "Exodus Movement Inc.",
   "license": "MIT",
   "dependencies": {
-    "node-fetch": "^2.6.0",
     "wretch": "^1.5.2",
     "ws": "^6.1.0"
   },

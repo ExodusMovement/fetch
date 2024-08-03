@@ -1,9 +1,10 @@
 'use strict'
 
-// Don't need to require node-fetch here, global fetch is defined
-// Same for global WebSocket
+// NOTE: use targeted imports in new code, main import is deprecated
 
-const fetchival = require('./fetchival.browser.js')
-const fetch = require('./fetch.browser.js')
+// Don't need to require ws here, global WebSocket is defined
+
+const fetchival = require('./fetchival.js')
+const fetch = require('./fetch.js')
 
 module.exports = { fetch, WebSocket, fetchival }
