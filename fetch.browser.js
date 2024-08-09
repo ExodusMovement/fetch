@@ -1,1 +1,1 @@
-module.exports = fetch.bind(globalThis)
+module.exports = (i, ...r) => globalThis.fetch(i, ...r)
