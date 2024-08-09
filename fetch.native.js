@@ -1,3 +1,9 @@
 'use strict'
 
-module.exports = typeof fetch === 'undefined' ? require('node-fetch') : fetch.bind(globalThis)
+if (typeof fetch === 'undefined') {
+  // Fall back to node-fetch
+  module.exports = require('node-fetch')
+} else {
+  // Prefer native / Node.js fetch if exists
+  module.exports = (i, ...r) => globalThis.fetch(i, ...r)
+}
