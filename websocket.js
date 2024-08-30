@@ -12,7 +12,13 @@ if (typeof process !== 'undefined' && process) {
     module.exports = WebSocket
   } else {
     // Node.js or Electron browser process
-    module.exports = require('ws')
+    if (typeof WebSocket === 'undefined') {
+      // Fall back to ws
+      module.exports = require('ws')
+    } else {
+      // Prefer Node.js WebSocket if exists
+      module.exports = WebSocket
+    }
   }
 } else {
   // Browser or Electron without Node.js integration
