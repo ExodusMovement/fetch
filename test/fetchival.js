@@ -24,7 +24,7 @@ tape('fetchival', (t) => {
 
   t.test('fetchival concatenates subpath with base URL', async (t) => {
     const captor = Captor()
-    fetchival.fetch = captor
+    globalThis.fetch = captor
 
     const client = fetchival(new URL('https://wayne-foundation.com'))('register')
 
@@ -37,7 +37,7 @@ tape('fetchival', (t) => {
 
   t.test('fetchival concatenates subpath with string base URL', async (t) => {
     const captor = Captor()
-    fetchival.fetch = captor
+    globalThis.fetch = captor
 
     const client = fetchival(new URL('https://wayne-foundation.com'))('register')
 

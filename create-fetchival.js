@@ -1,6 +1,6 @@
 const { url } = require('./url')
 
-function createFetchival({ fetch }) {
+function createFetchival() {
   // API somewhat based on https://github.com/typicode/fetchival, but with significant changes
 
   async function _fetch(method, link, opts, data) {
@@ -8,7 +8,7 @@ function createFetchival({ fetch }) {
     if (opts.body) throw new Error('unexpected pre-set body option')
 
     // Unlike fetchival, don't pollute the opts object we were given
-    const res = await fetchival.fetch(link, {
+    const res = await fetch(link, {
       ...opts,
       method,
       headers: {
@@ -72,8 +72,6 @@ function createFetchival({ fetch }) {
 
     return _
   }
-
-  fetchival.fetch = fetch
 
   return fetchival
 }
