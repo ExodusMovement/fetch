@@ -1,5 +1,5 @@
 const createFetchival = require('./create-fetchival')
 
 module.exports = createFetchival({
-  fetch: (i, ...r) => globalThis.fetch(i, ...r),
+  fetch: typeof fetch === 'undefined' ? null : (i, ...r) => globalThis.fetch(i, ...r),
 })

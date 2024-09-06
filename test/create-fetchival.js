@@ -12,7 +12,7 @@ tape('createFetchival', (t) => {
 
     const fetchival = createFetchival({ fetch })
 
-    const res = await fetchival('https://jsonplaceholder.typicode.com')('posts').get()
+    const res = await fetchival(new URL('https://jsonplaceholder.typicode.com'))('posts').get()
 
     t.equals(res, data)
   })
@@ -25,7 +25,7 @@ tape('createFetchival', (t) => {
     })
 
     try {
-      await fetchival('https://jsonplaceholder.typicode.com')('posts').get()
+      await fetchival(new URL('https://jsonplaceholder.typicode.com'))('posts').get()
       t.fail('request should have failed')
     } catch (err) {
       t.equals(err.message, 'Couldnt establish connection')

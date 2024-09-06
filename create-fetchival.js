@@ -1,20 +1,14 @@
-// Based on https://github.com/typicode/fetchival and aims to keep most of the same API
-
-// Unlike fetchival, we also encode the keys
-function query(params) {
-  if (!params) return ''
-  return `?${Object.entries(params)
-    .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
-    .join('&')}`
-}
+const { url } = require('./url')
 
 function createFetchival({ fetch }) {
-  async function _fetch(method, url, opts, data) {
+  // API somewhat based on https://github.com/typicode/fetchival, but with significant changes
+
+  async function _fetch(method, link, opts, data) {
     // Unlike fetchival, don't silently ignore and override
     if (opts.body) throw new Error('unexpected pre-set body option')
 
     // Unlike fetchival, don't pollute the opts object we were given
-    const res = await fetchival.fetch(url, {
+    const res = await fetchival.fetch(link, {
       ...opts,
       method,
       headers: {
@@ -37,19 +31,44 @@ function createFetchival({ fetch }) {
     throw err
   }
 
-  function fetchival(url, opts = {}) {
+  function fetchival(link, opts = {}) {
+    if (!(link instanceof URL)) throw new TypeError('Url should be an instance of URL')
+
+    const str = `${link}`
+    if (str.includes('?') || str.includes('&')) throw new Error('Invalid url with params!')
+    if (str.includes('#')) throw new Error('Invalid url with hash!')
+
     const _ = (sub, o = {}) => {
-      // TODO: validate subpath here
-      const str = `${url}`
-      const joined = str.endsWith('/') ? `${url}${sub}` : `${url}/${sub}`
+      // Unlike fetchival, this performs additional validation
+      if (sub.includes('/')) throw new Error('Only simple subpaths are allowed!')
+      const joined = str.endsWith('/') ? url`${link}${sub}` : url`${link}/${sub}`
       return fetchival(joined, { ...opts, ...o })
     }
 
-    _.get = (params) => _fetch('GET', url + query(params), opts)
-    _.post = (data) => _fetch('POST', url, opts, data)
-    _.put = (data) => _fetch('PUT', url, opts, data)
-    _.patch = (data) => _fetch('PATCH', url, opts, data)
-    _.delete = () => _fetch('DELETE', url, opts)
+    _.head = (params) => _fetch('HEAD', params ? url`${link}?${params}` : link, opts)
+    _.get = (params) => _fetch('GET', params ? url`${link}?${params}` : link, opts)
+    _.post = (data) => _fetch('POST', link, opts, data)
+    _.put = (data) => _fetch('PUT', link, opts, data)
+    _.patch = (data) => _fetch('PATCH', link, opts, data)
+    _.delete = () => _fetch('DELETE', link, opts)
+    _.method = (method, ...args) => {
+      switch (method) {
+        case 'head':
+          return _.head(...args)
+        case 'get':
+          return _.get(...args)
+        case 'post':
+          return _.post(...args)
+        case 'put':
+          return _.put(...args)
+        case 'patch':
+          return _.patch(...args)
+        case 'delete':
+          return _.delete(...args)
+        default:
+          throw new Error('Unexpected method')
+      }
+    }
 
     return _
   }
