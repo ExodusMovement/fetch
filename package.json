@@ -22,7 +22,7 @@
     "lint": "eslint . --ignore-path .gitignore",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write '**/*.{md,yml}'",
-    "test": "tape test/*.js | tap-spec",
+    "test": "exodus-test test/*.js",
     "release": "semantic-release"
   },
   "author": "Exodus Movement Inc.",
@@ -30,16 +30,14 @@
   "devDependencies": {
     "@exodus/eslint-config": "^5.12.0",
     "@exodus/prettier": "^1.0.0",
-    "@types/tape": "^5.6.0",
+    "@exodus/test": "^1.0.0-rc.49",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/github": "^9.2.3",
+    "conventional-changelog-conventionalcommits": "^6.0.0",
     "eslint": "^8.49.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.3",
-    "semantic-release": "^21.1.1",
-    "tap-spec": "^5.0.0",
-    "tape": "^5.3.1",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/github": "^9.2.3",
-    "conventional-changelog-conventionalcommits": "^6.0.0"
+    "semantic-release": "^21.1.1"
   },
   "prettier": "@exodus/prettier"
 }

@@ -1,6 +1,6 @@
 'use strict'
 
-const tape = require('tape')
+const tape = require('@exodus/test/tape')
 const { url, urlBase } = require('../url')
 
 tape('url', (t) => {
