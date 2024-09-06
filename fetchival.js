@@ -1,6 +1,5 @@
-const fetchival = require('./fetchival.browser')
-const fetch = require('./fetch')
+const createFetchival = require('./create-fetchival')
 
-if (!fetchival.fetch) fetchival.fetch = fetch
-
-module.exports = fetchival
+module.exports = createFetchival({
+  fetch: (i, ...r) => globalThis.fetch(i, ...r),
+})

@@ -1,6 +1,6 @@
 const { url } = require('../url')
 
-function createFetchival({ fetch = require('../fetch') } = {}) {
+function createFetchival({ fetch }) {
   // API somewhat based on https://github.com/typicode/fetchival, but with significant changes
 
   async function _fetch(method, link, opts, data) {

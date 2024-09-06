@@ -10,52 +10,26 @@
     "url": "https://github.com/ExodusMovement/fetch/issues"
   },
   "exports": {
-    "./fetch": {
-      "browser": "./fetch.browser.js",
-      "react-native": "./fetch.native.js",
-      "node": "./fetch.js",
-      "default": "./fetch.js"
-    },
     "./experimental/fetchival": {
-      "browser": "./experimental/fetchival.js",
-      "react-native": "./experimental/fetchival.js",
-      "node": "./experimental/fetchival.js",
       "default": "./experimental/fetchival.js"
     },
     "./experimental/create-fetchival": {
       "default": "./experimental/create-fetchival.js"
     },
     "./fetchival": {
-      "browser": "./fetchival.browser.js",
-      "react-native": "./fetchival.js",
-      "node": "./fetchival.js",
       "default": "./fetchival.js"
     },
     "./create-fetchival": {
       "default": "./create-fetchival.js"
     },
     "./url": {
-      "browser": "./url.js",
-      "react-native": "./url.js",
-      "node": "./url.js",
       "default": "./url.js"
     }
-  },
-  "browser": {
-    "./fetchival.js": "./fetchival.browser.js",
-    "./fetch.js": "./fetch.browser.js"
-  },
-  "react-native": {
-    "./fetch.js": "./fetch.native.js"
   },
   "files": [
     "experimental/fetchival.js",
     "experimental/create-fetchival.js",
-    "fetch.browser.js",
-    "fetch.native.js",
-    "fetch.js",
     "create-fetchival.js",
-    "fetchival.browser.js",
     "fetchival.js",
     "url.js",
     "CHANGELOG.md"
@@ -69,9 +43,6 @@
   },
   "author": "Exodus Movement Inc.",
   "license": "MIT",
-  "dependencies": {
-    "node-fetch": "^2.6.0"
-  },
   "devDependencies": {
     "@exodus/eslint-config": "^5.12.0",
     "@exodus/prettier": "^1.0.0",
