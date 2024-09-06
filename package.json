@@ -10,12 +10,8 @@
     "url": "https://github.com/ExodusMovement/fetch/issues"
   },
   "exports": {
-    "./fetchival": {
-      "default": "./fetchival.js"
-    },
-    "./url": {
-      "default": "./url.js"
-    }
+    "./fetchival": "./fetchival.js",
+    "./url": "./url.js"
   },
   "files": [
     "fetchival.js",
