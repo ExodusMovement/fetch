@@ -1,6 +1,6 @@
 import tape from '@exodus/test/tape'
 
-import { fetchival } from '../fetchival.js'
+import { fetcher } from '../fetcher.js'
 
 function Captor() {
   const captor = {
@@ -17,16 +17,16 @@ function Captor() {
 }
 
 tape('fetches json', async (t) => {
-  const res = await fetchival(new URL('https://jsonplaceholder.typicode.com'))('posts').get()
+  const res = await fetcher(new URL('https://jsonplaceholder.typicode.com'))('posts').get()
 
   t.equals(res.length, 100)
 })
 
-tape('fetchival concatenates subpath with base URL', async (t) => {
+tape('concatenates subpath with base URL', async (t) => {
   const captor = Captor()
   globalThis.fetch = captor
 
-  const client = fetchival(new URL('https://wayne-foundation.com'))('register')
+  const client = fetcher(new URL('https://wayne-foundation.com'))('register')
 
   await client.post({ some: 'data' })
 
@@ -35,11 +35,11 @@ tape('fetchival concatenates subpath with base URL', async (t) => {
   t.deepEqual(url, new URL('https://wayne-foundation.com/register'))
 })
 
-tape('fetchival concatenates subpath with string base URL', async (t) => {
+tape('concatenates subpath with string base URL', async (t) => {
   const captor = Captor()
   globalThis.fetch = captor
 
-  const client = fetchival(new URL('https://wayne-foundation.com'))('register')
+  const client = fetcher(new URL('https://wayne-foundation.com'))('register')
 
   await client.post({ some: 'data' })
 

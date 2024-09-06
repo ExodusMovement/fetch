@@ -28,7 +28,7 @@ async function _fetch(method, link, opts, data) {
   throw err
 }
 
-export function fetchival(link, opts = {}) {
+export function fetcher(link, opts = {}) {
   if (!(link instanceof URL)) throw new TypeError('Url should be an instance of URL')
 
   const str = `${link}`
@@ -39,7 +39,7 @@ export function fetchival(link, opts = {}) {
     // Unlike fetchival, this performs additional validation
     if (sub.includes('/')) throw new Error('Only simple subpaths are allowed!')
     const joined = str.endsWith('/') ? url`${link}${sub}` : url`${link}/${sub}`
-    return fetchival(joined, { ...opts, ...o })
+    return fetcher(joined, { ...opts, ...o })
   }
 
   _.head = (params) => _fetch('HEAD', params ? url`${link}?${params}` : link, opts)
