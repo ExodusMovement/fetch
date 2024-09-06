@@ -84,7 +84,7 @@ function url(strings, ...args) {
       (typeof raw === 'object' && Object.getPrototypeOf(raw) === Object.prototype)
     ) {
       if (i === args.length - 1 && strings[i + 1] === '') {
-        if (!/^[&?]$/.test(strings[i].slice(-1))) {
+        if (!['&', '?'].includes(strings[i].slice(-1))) {
           throw new Error('Missing & or ? before object params!')
         }
 
