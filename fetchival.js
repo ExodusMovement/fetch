@@ -1,4 +1,4 @@
-const { url } = require('./url')
+import { url } from './url.js'
 
 async function _fetch(method, link, opts, data) {
   // Unlike fetchival, don't silently ignore and override
@@ -28,7 +28,7 @@ async function _fetch(method, link, opts, data) {
   throw err
 }
 
-function fetchival(link, opts = {}) {
+export function fetchival(link, opts = {}) {
   if (!(link instanceof URL)) throw new TypeError('Url should be an instance of URL')
 
   const str = `${link}`
@@ -69,5 +69,3 @@ function fetchival(link, opts = {}) {
 
   return _
 }
-
-module.exports = fetchival

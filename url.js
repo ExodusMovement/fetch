@@ -103,4 +103,4 @@ function url(strings, ...args) {
   return url
 }
 
-module.exports = { url, urlComponent, urlBase, urlUnwrap }
+export { url, urlComponent, urlBase, urlUnwrap }

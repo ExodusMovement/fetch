@@ -1,5 +1,6 @@
-const tape = require('@exodus/test/tape')
-const fetchival = require('../fetchival')
+import tape from '@exodus/test/tape'
+
+import { fetchival } from '../fetchival.js'
 
 function Captor() {
   const captor = {

@@ -9,6 +9,7 @@
   "bugs": {
     "url": "https://github.com/ExodusMovement/fetch/issues"
   },
+  "type": "module",
   "exports": {
     "./fetchival": "./fetchival.js",
     "./url": "./url.js"
