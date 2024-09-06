@@ -16,12 +16,6 @@
       "node": "./fetch.js",
       "default": "./fetch.js"
     },
-    "./websocket": {
-      "browser": "./websocket.browser.js",
-      "react-native": "./websocket.native.js",
-      "node": "./websocket.js",
-      "default": "./websocket.js"
-    },
     "./experimental/fetchival": {
       "browser": "./experimental/fetchival.js",
       "react-native": "./experimental/fetchival.js",
@@ -49,12 +43,10 @@
   },
   "browser": {
     "./fetchival.js": "./fetchival.browser.js",
-    "./fetch.js": "./fetch.browser.js",
-    "./websocket.js": "./websocket.browser.js"
+    "./fetch.js": "./fetch.browser.js"
   },
   "react-native": {
-    "./fetch.js": "./fetch.native.js",
-    "./websocket.js": "./websocket.native.js"
+    "./fetch.js": "./fetch.native.js"
   },
   "files": [
     "experimental/fetchival.js",
@@ -62,9 +54,6 @@
     "fetch.browser.js",
     "fetch.native.js",
     "fetch.js",
-    "websocket.browser.js",
-    "websocket.native.js",
-    "websocket.js",
     "create-fetchival.js",
     "fetchival.browser.js",
     "fetchival.js",
@@ -81,8 +70,7 @@
   "author": "Exodus Movement Inc.",
   "license": "MIT",
   "dependencies": {
-    "node-fetch": "^2.6.0",
-    "ws": "^6.1.0"
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@exodus/eslint-config": "^5.12.0",
