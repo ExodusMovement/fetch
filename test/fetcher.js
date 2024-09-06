@@ -1,4 +1,4 @@
-import tape from '@exodus/test/tape'
+import tape from '@exodus/test/tape' // eslint-disable-line import/no-unresolved
 
 import { fetcher } from '../fetcher.js'
 
