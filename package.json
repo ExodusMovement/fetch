@@ -13,15 +13,11 @@
     "./fetchival": {
       "default": "./fetchival.js"
     },
-    "./create-fetchival": {
-      "default": "./create-fetchival.js"
-    },
     "./url": {
       "default": "./url.js"
     }
   },
   "files": [
-    "create-fetchival.js",
     "fetchival.js",
     "url.js",
     "CHANGELOG.md"
