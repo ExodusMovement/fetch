@@ -40,12 +40,6 @@
     "./create-fetchival": {
       "default": "./create-fetchival.js"
     },
-    "./wretch": {
-      "browser": "./wretch.browser.js",
-      "react-native": "./wretch.js",
-      "node": "./wretch.js",
-      "default": "./wretch.js"
-    },
     "./url": {
       "browser": "./url.js",
       "react-native": "./url.js",
@@ -55,7 +49,6 @@
   },
   "browser": {
     "./fetchival.js": "./fetchival.browser.js",
-    "./wretch.js": "./wretch.browser.js",
     "./fetch.js": "./fetch.browser.js",
     "./websocket.js": "./websocket.browser.js"
   },
@@ -75,8 +68,6 @@
     "create-fetchival.js",
     "fetchival.browser.js",
     "fetchival.js",
-    "wretch.browser.js",
-    "wretch.js",
     "url.js",
     "CHANGELOG.md"
   ],
@@ -91,7 +82,6 @@
   "license": "MIT",
   "dependencies": {
     "node-fetch": "^2.6.0",
-    "wretch": "^1.5.2",
     "ws": "^6.1.0"
   },
   "devDependencies": {
