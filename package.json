@@ -9,121 +9,36 @@
   "bugs": {
     "url": "https://github.com/ExodusMovement/fetch/issues"
   },
-  "main": "index.js",
+  "type": "module",
   "exports": {
-    ".": {
-      "browser": "./index.browser.js",
-      "react-native": "./index.js",
-      "node": "./index.js",
-      "default": "./index.js"
-    },
-    "./fetch": {
-      "browser": "./fetch.browser.js",
-      "react-native": "./fetch.native.js",
-      "node": "./fetch.js",
-      "default": "./fetch.js"
-    },
-    "./websocket": {
-      "browser": "./websocket.browser.js",
-      "react-native": "./websocket.native.js",
-      "node": "./websocket.js",
-      "default": "./websocket.js"
-    },
-    "./core": {
-      "browser": "./core.js",
-      "react-native": "./core.js",
-      "node": "./core.js",
-      "default": "./core.js"
-    },
-    "./experimental/fetchival": {
-      "browser": "./experimental/fetchival.js",
-      "react-native": "./experimental/fetchival.js",
-      "node": "./experimental/fetchival.js",
-      "default": "./experimental/fetchival.js"
-    },
-    "./experimental/create-fetchival": {
-      "default": "./experimental/create-fetchival.js"
-    },
-    "./fetchival": {
-      "browser": "./fetchival.browser.js",
-      "react-native": "./fetchival.js",
-      "node": "./fetchival.js",
-      "default": "./fetchival.js"
-    },
-    "./create-fetchival": {
-      "default": "./create-fetchival.js"
-    },
-    "./wretch": {
-      "browser": "./wretch.browser.js",
-      "react-native": "./wretch.js",
-      "node": "./wretch.js",
-      "default": "./wretch.js"
-    },
-    "./url": {
-      "browser": "./url.js",
-      "react-native": "./url.js",
-      "node": "./url.js",
-      "default": "./url.js"
-    }
-  },
-  "browser": {
-    "./fetchival.js": "./fetchival.browser.js",
-    "./wretch.js": "./wretch.browser.js",
-    "./fetch.js": "./fetch.browser.js",
-    "./websocket.js": "./websocket.browser.js",
-    "./index.js": "./index.browser.js"
-  },
-  "react-native": {
-    "./fetch.js": "./fetch.native.js",
-    "./websocket.js": "./websocket.native.js"
+    "./fetcher": "./fetcher.js",
+    "./url": "./url.js"
   },
   "files": [
-    "experimental/fetchival.js",
-    "experimental/create-fetchival.js",
-    "core.js",
-    "fetch.browser.js",
-    "fetch.native.js",
-    "fetch.js",
-    "websocket.browser.js",
-    "websocket.native.js",
-    "websocket.js",
-    "create-fetchival.js",
-    "fetchival.browser.js",
-    "fetchival.js",
-    "wretch.browser.js",
-    "wretch.js",
+    "fetcher.js",
     "url.js",
-    "index.browser.js",
-    "index.js",
     "CHANGELOG.md"
   ],
   "scripts": {
     "lint": "eslint . --ignore-path .gitignore",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write '**/*.{md,yml}'",
-    "test": "tape test/*.js | tap-spec",
+    "test": "exodus-test test/*.js",
     "release": "semantic-release"
   },
   "author": "Exodus Movement Inc.",
   "license": "MIT",
-  "dependencies": {
-    "node-fetch": "^2.6.0",
-    "wretch": "^1.5.2",
-    "ws": "^6.1.0"
-  },
   "devDependencies": {
     "@exodus/eslint-config": "^5.12.0",
     "@exodus/prettier": "^1.0.0",
-    "@types/tape": "^5.6.0",
+    "@exodus/test": "^1.0.0-rc.49",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/github": "^9.2.3",
+    "conventional-changelog-conventionalcommits": "^6.0.0",
     "eslint": "^8.49.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.3",
-    "semantic-release": "^21.1.1",
-    "tap-spec": "^5.0.0",
-    "tape": "^5.3.1",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/github": "^9.2.3",
-    "conventional-changelog-conventionalcommits": "^6.0.0"
+    "semantic-release": "^21.1.1"
   },
   "prettier": "@exodus/prettier"
 }

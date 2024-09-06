@@ -1,7 +1,6 @@
-'use strict'
+import tape from '@exodus/test/tape' // eslint-disable-line import/no-unresolved
 
-const tape = require('tape')
-const { url, urlBase } = require('../url')
+import { url, urlBase } from '../url.js'
 
 tape('url', (t) => {
   const check = (val, expected) => {
