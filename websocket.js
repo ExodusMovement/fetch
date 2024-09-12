@@ -9,18 +9,18 @@ if (typeof process !== 'undefined' && process) {
   // Node.js or Electron with Node.js integration
   if (process.type === 'renderer' || process.type === 'worker') {
     // Electron renderer with Node.js integration
-    module.exports = WebSocket
+    module.exports = globalThis.WebSocket
   } else {
     // Node.js or Electron browser process
-    if (typeof WebSocket === 'undefined') {
+    if (typeof globalThis.WebSocket === 'undefined') {
       // Fall back to ws
       module.exports = require('ws')
     } else {
       // Prefer Node.js WebSocket if exists
-      module.exports = WebSocket
+      module.exports = globalThis.WebSocket
     }
   }
 } else {
   // Browser or Electron without Node.js integration
-  module.exports = WebSocket
+  module.exports = globalThis.WebSocket
 }
