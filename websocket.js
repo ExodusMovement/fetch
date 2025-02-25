@@ -12,6 +12,7 @@ if (typeof process !== 'undefined' && process) {
     module.exports = globalThis.WebSocket
   } else {
     // Node.js or Electron browser process
+    // eslint-disable-next-line unicorn/no-typeof-undefined
     if (typeof globalThis.WebSocket === 'undefined') {
       // Fall back to ws
       module.exports = require('ws')
