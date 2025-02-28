@@ -1,6 +1,6 @@
 {
   "name": "@exodus/fetch",
-  "version": "1.3.1",
+  "version": "1.7.1",
   "description": "Wrapper around global fetch / node-fetch for Electron and React",
   "repository": {
     "type": "git",
@@ -67,11 +67,11 @@
     }
   },
   "browser": {
-    "./fetchival.js": "./fetchival.browser.js",
-    "./wretch.js": "./wretch.browser.js",
     "./fetch.js": "./fetch.browser.js",
+    "./fetchival.js": "./fetchival.browser.js",
+    "./index.js": "./index.browser.js",
     "./websocket.js": "./websocket.browser.js",
-    "./index.js": "./index.browser.js"
+    "./wretch.js": "./wretch.browser.js"
   },
   "react-native": {
     "./fetch.js": "./fetch.native.js",
@@ -114,16 +114,16 @@
   "devDependencies": {
     "@exodus/eslint-config": "^5.12.0",
     "@exodus/prettier": "^1.0.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/github": "^9.2.3",
     "@types/tape": "^5.6.0",
+    "conventional-changelog-conventionalcommits": "^6.0.0",
     "eslint": "^8.49.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.3",
     "semantic-release": "^21.1.1",
     "tap-spec": "^5.0.0",
-    "tape": "^5.3.1",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/github": "^9.2.3",
-    "conventional-changelog-conventionalcommits": "^6.0.0"
+    "tape": "^5.3.1"
   },
   "prettier": "@exodus/prettier"
 }
