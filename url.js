@@ -96,7 +96,30 @@ function url(strings, ...args) {
 
     return encodeComponent(raw)
   })
-  const res = [strings[0], ...escaped.flatMap((arg, i) => [arg, strings[i + 1]])].join('')
+
+  // Handle the case where a URL object is used as base and creates double slashes
+  let res
+
+  if (base && escaped.length > 0) {
+    const parts = [strings[0]]
+
+    for (const [i, escapedArg] of escaped.entries()) {
+      parts.push(escapedArg)
+      let nextString = strings[i + 1]
+
+      // If the previous part ends with '/' and next string starts with '/', remove the duplicate
+      if (parts[parts.length - 1].endsWith('/') && nextString.startsWith('/')) {
+        nextString = nextString.slice(1)
+      }
+
+      parts.push(nextString)
+    }
+
+    res = parts.join('')
+  } else {
+    res = [strings[0], ...escaped.flatMap((arg, i) => [arg, strings[i + 1]])].join('')
+  }
+
   if (base) validateBase(base, res)
   const url = new URL(res)
   if (String(url) !== res) throw new Error('Unexpected URL produced!') // e.g. .. which get resolved

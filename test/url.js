@@ -36,6 +36,10 @@ tape('url', (t) => {
     const arg = new Map(Object.entries({ x: 10, b: 20 }))
     check(url`https://example.org/buz/?d&${arg}`, 'https://example.org/buz/?d&x=10&b=20')
   })
+  t.doesNotThrow(() => {
+    const baseUrl = new URL('https://example.org')
+    check(url`${baseUrl}/foo`, 'https://example.org/foo')
+  })
 
   t.end()
 })
