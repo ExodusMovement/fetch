@@ -40,6 +40,21 @@ tape('url', (t) => {
     const baseUrl = new URL('https://example.org')
     check(url`${baseUrl}/foo`, 'https://example.org/foo')
   })
+  t.doesNotThrow(() => {
+    // baseURL ends with / and endpoint does too.
+    const baseUrl = new URL('https://example.org/')
+    check(url`${baseUrl}/foo`, 'https://example.org/foo')
+  })
+  t.doesNotThrow(() => {
+    // baseURL ends with / but endpoint doesn't.
+    const baseUrl = new URL('https://example.org/')
+    check(url`${baseUrl}foo`, 'https://example.org/foo')
+  })
+  t.doesNotThrow(() => {
+    // baseURL doesn't ends with / and endpoint doesn't.
+    const baseUrl = new URL('https://example.org')
+    check(url`${baseUrl}foo`, 'https://example.org/foo')
+  })
 
   t.end()
 })
