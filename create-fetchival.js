@@ -32,7 +32,7 @@ function createFetchival({ fetch }) {
       return res.json()
     }
 
-    const err = new Error(`${res.status} ${res.statusText || ''}`)
+    const err = new Error(`${res.status} ${res.statusText || ''}`.trim())
     err.response = res
     throw err
   }
