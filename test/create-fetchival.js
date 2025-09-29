@@ -31,4 +31,28 @@ tape('createFetchival', (t) => {
       t.equals(err.message, 'Couldnt establish connection')
     }
   })
+
+  t.test('does not stringify body when Content-Type is not application/json', async (t) => {
+    let capturedOpts
+    const formData = 'name=John&age=30'
+    const fetch = async (url, opts) => {
+      capturedOpts = opts
+      return { status: 200, json: async () => ({ success: true }) }
+    }
+
+    const fetchival = createFetchival({ fetch })
+
+    await fetchival('https://example.com')('api', {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    }).post(formData)
+
+    t.equals(
+      capturedOpts.body,
+      formData,
+      'body should not be stringified for non-JSON content type'
+    )
+    t.equals(capturedOpts.headers['Content-Type'], 'application/x-www-form-urlencoded')
+  })
 })
