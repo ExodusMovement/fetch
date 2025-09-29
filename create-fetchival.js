@@ -13,16 +13,20 @@ function createFetchival({ fetch }) {
     // Unlike fetchival, don't silently ignore and override
     if (opts.body) throw new Error('unexpected pre-set body option')
 
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      ...opts.headers,
+    }
+    // If a consumer has set the non-json content type, we don't stringify the body.
+    const shouldStringify = headers['Content-Type'] === 'application/json'
+
     // Unlike fetchival, don't pollute the opts object we were given
     const res = await fetchival.fetch(url, {
       ...opts,
       method,
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        ...opts.headers,
-      },
-      ...(data ? { body: JSON.stringify(data) } : {}),
+      headers,
+      ...(data ? { body: shouldStringify ? JSON.stringify(data) : data } : {}),
     })
 
     if (res.status >= 200 && res.status < 300) {
