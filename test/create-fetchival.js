@@ -55,4 +55,24 @@ tape('createFetchival', (t) => {
     )
     t.equals(capturedOpts.headers['Content-Type'], 'application/x-www-form-urlencoded')
   })
+
+  t.test('applies JSON.stringify to body by default', async (t) => {
+    let capturedOpts
+    const formData = 'name=John&age=30'
+    const fetch = async (url, opts) => {
+      capturedOpts = opts
+      return { status: 200, json: async () => ({ success: true }) }
+    }
+
+    const fetchival = createFetchival({ fetch })
+
+    await fetchival('https://example.com')('api').post(formData)
+
+    t.equals(
+      capturedOpts.body,
+      JSON.stringify(formData),
+      'body should not be stringified for non-JSON content type'
+    )
+    t.equals(capturedOpts.headers['Content-Type'], 'application/json')
+  })
 })
