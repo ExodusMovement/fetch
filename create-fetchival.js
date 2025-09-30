@@ -8,6 +8,8 @@ function query(params) {
     .join('&')}`
 }
 
+const prevenJsonStringifyContentTypes = new Set(['application/x-sentry-envelope'])
+
 function createFetchival({ fetch }) {
   async function _fetch(method, url, opts, data) {
     // Unlike fetchival, don't silently ignore and override
@@ -18,8 +20,8 @@ function createFetchival({ fetch }) {
       'Content-Type': 'application/json',
       ...opts.headers,
     }
-    // If a consumer has set the non-json content type, we don't stringify the body.
-    const shouldStringify = headers['Content-Type'] === 'application/json'
+    // Allows some consumers to avoid JSON.stringify for their vendor-specific content types.
+    const shouldStringify = !prevenJsonStringifyContentTypes.has(headers['Content-Type'])
 
     // Unlike fetchival, don't pollute the opts object we were given
     const res = await fetchival.fetch(url, {

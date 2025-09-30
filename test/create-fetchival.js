@@ -32,7 +32,7 @@ tape('createFetchival', (t) => {
     }
   })
 
-  t.test('does not stringify body when Content-Type is not application/json', async (t) => {
+  t.test('does not stringify body for specific Conent-Type headers', async (t) => {
     let capturedOpts
     const formData = 'name=John&age=30'
     const fetch = async (url, opts) => {
@@ -44,7 +44,7 @@ tape('createFetchival', (t) => {
 
     await fetchival('https://example.com')('api', {
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/x-sentry-envelope',
       },
     }).post(formData)
 
@@ -53,7 +53,7 @@ tape('createFetchival', (t) => {
       formData,
       'body should not be stringified for non-JSON content type'
     )
-    t.equals(capturedOpts.headers['Content-Type'], 'application/x-www-form-urlencoded')
+    t.equals(capturedOpts.headers['Content-Type'], 'application/x-sentry-envelope')
   })
 
   t.test('applies JSON.stringify to body by default', async (t) => {
