@@ -1,10 +1,12 @@
 'use strict'
 
-const tape = require('tape')
-const { url, urlBase } = require('../url')
+import tape = require('tape')
+import urlModule = require('../src/url')
+
+const { url, urlBase } = urlModule
 
 tape('url', (t) => {
-  const check = (val, expected) => {
+  const check = (val: URL, expected: string) => {
     t.strictEqual(Object.getPrototypeOf(val), URL.prototype, 'is an URL object')
     t.strictEqual(`${val}`, expected, `value is correct: ${expected}`)
   }

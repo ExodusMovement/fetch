@@ -1,15 +1,15 @@
-const tape = require('tape')
-const fetchival = require('../experimental/fetchival')
+import tape = require('tape')
+import fetchival = require('../src/experimental/fetchival')
 
 function Captor() {
-  const captor = {
+  const captor: CaptorState = {
     calls: [],
     async capture(...args) {
       this.calls.push(args)
-      return { status: 204 }
+      return { status: 204, statusText: 'No Content', json: async () => null, text: async () => '' }
     },
   }
-  const capture = captor.capture.bind(captor)
+  const capture = captor.capture.bind(captor) as CaptureFunction
   capture.calls = captor.calls
 
   return capture
@@ -17,7 +17,9 @@ function Captor() {
 
 tape('fetchival', (t) => {
   t.test('fetches json', async () => {
-    const res = await fetchival(new URL('https://jsonplaceholder.typicode.com'))('posts').get()
+    const res = (await fetchival(new URL('https://jsonplaceholder.typicode.com'))(
+      'posts'
+    ).get()) as unknown[]
 
     t.equals(res.length, 100)
   })
@@ -30,7 +32,7 @@ tape('fetchival', (t) => {
 
     await client.post({ some: 'data' })
 
-    const [url] = captor.calls[0]
+    const [url] = captor.calls[0]!
 
     t.deepEqual(url, new URL('https://wayne-foundation.com/register'))
   })
@@ -43,8 +45,27 @@ tape('fetchival', (t) => {
 
     await client.post({ some: 'data' })
 
-    const [url] = captor.calls[0]
+    const [url] = captor.calls[0]!
 
     t.deepEqual(url, new URL('https://wayne-foundation.com/register'))
   })
 })
+
+interface CaptorState {
+  calls: CaptureArgs[]
+  capture(...args: CaptureArgs): Promise<CaptureResponse>
+}
+
+interface CaptureFunction {
+  (...args: CaptureArgs): Promise<CaptureResponse>
+  calls: CaptureArgs[]
+}
+
+interface CaptureResponse {
+  status: number
+  statusText: string
+  json(): Promise<null>
+  text(): Promise<string>
+}
+
+type CaptureArgs = [URL, (RequestInit & { timeout?: number })?]

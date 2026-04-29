@@ -1,9 +1,29 @@
-const { url } = require('../url')
+import urlModule = require('../url')
+import type {
+  ClientMethod,
+  ExperimentalCreateFetchivalOptions,
+  ExperimentalFetchival,
+  ExperimentalFetchivalOptions,
+  ExperimentalFetchLike,
+  FetchivalError,
+  HttpMethod,
+  JsonValue,
+  QueryParams,
+} from '../types'
 
-function createFetchival({ fetch = require('../fetch') } = {}) {
+const { url } = urlModule
+
+function createFetchival({
+  fetch = require('../fetch') as ExperimentalFetchLike,
+}: ExperimentalCreateFetchivalOptions = {}): ExperimentalFetchival {
   // API somewhat based on https://github.com/typicode/fetchival, but with significant changes
 
-  async function _fetch(method, link, opts, data) {
+  async function _fetch(
+    method: HttpMethod,
+    link: URL,
+    opts: ExperimentalFetchivalOptions,
+    data?: JsonValue
+  ) {
     // Unlike fetchival, don't silently ignore and override
     if (opts.body) throw new Error('unexpected pre-set body option')
 
@@ -27,45 +47,45 @@ function createFetchival({ fetch = require('../fetch') } = {}) {
       return res.json()
     }
 
-    const err = new Error(res.statusText)
+    const err = new Error(res.statusText) as FetchivalError
     err.response = res
     throw err
   }
 
-  function fetchival(link, opts = {}) {
+  function fetchival(link: URL, opts: ExperimentalFetchivalOptions = {}) {
     if (!(link instanceof URL)) throw new TypeError('Url should be an instance of URL')
 
     const str = `${link}`
     if (str.includes('?') || str.includes('&')) throw new Error('Invalid url with params!')
     if (str.includes('#')) throw new Error('Invalid url with hash!')
 
-    const _ = (sub, o = {}) => {
+    const _ = (sub: string, o: ExperimentalFetchivalOptions = {}) => {
       // Unlike fetchival, this performs additional validation
       if (sub.includes('/')) throw new Error('Only simple subpaths are allowed!')
       const joined = str.endsWith('/') ? url`${link}${sub}` : url`${link}/${sub}`
       return fetchival(joined, { ...opts, ...o })
     }
 
-    _.head = (params) => _fetch('HEAD', params ? url`${link}?${params}` : link, opts)
-    _.get = (params) => _fetch('GET', params ? url`${link}?${params}` : link, opts)
-    _.post = (data) => _fetch('POST', link, opts, data)
-    _.put = (data) => _fetch('PUT', link, opts, data)
-    _.patch = (data) => _fetch('PATCH', link, opts, data)
+    _.head = (params?: QueryParams) => _fetch('HEAD', params ? url`${link}?${params}` : link, opts)
+    _.get = (params?: QueryParams) => _fetch('GET', params ? url`${link}?${params}` : link, opts)
+    _.post = (data?: JsonValue) => _fetch('POST', link, opts, data)
+    _.put = (data?: JsonValue) => _fetch('PUT', link, opts, data)
+    _.patch = (data?: JsonValue) => _fetch('PATCH', link, opts, data)
     _.delete = () => _fetch('DELETE', link, opts)
-    _.method = (method, ...args) => {
+    _.method = (method: ClientMethod, arg?: JsonValue | QueryParams) => {
       switch (method) {
         case 'head':
-          return _.head(...args)
+          return _.head(arg as QueryParams | undefined)
         case 'get':
-          return _.get(...args)
+          return _.get(arg as QueryParams | undefined)
         case 'post':
-          return _.post(...args)
+          return _.post(arg as JsonValue | undefined)
         case 'put':
-          return _.put(...args)
+          return _.put(arg as JsonValue | undefined)
         case 'patch':
-          return _.patch(...args)
+          return _.patch(arg as JsonValue | undefined)
         case 'delete':
-          return _.delete(...args)
+          return _.delete()
         default:
           throw new Error('Unexpected method')
       }
@@ -79,4 +99,4 @@ function createFetchival({ fetch = require('../fetch') } = {}) {
   return fetchival
 }
 
-module.exports = createFetchival
+export = createFetchival

@@ -9,99 +9,97 @@
   "bugs": {
     "url": "https://github.com/ExodusMovement/fetch/issues"
   },
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "exports": {
     ".": {
-      "browser": "./index.browser.js",
-      "react-native": "./index.js",
-      "node": "./index.js",
-      "default": "./index.js"
+      "types": "./lib/index.d.ts",
+      "browser": "./lib/index.browser.js",
+      "react-native": "./lib/index.js",
+      "node": "./lib/index.js",
+      "default": "./lib/index.js"
     },
     "./fetch": {
-      "browser": "./fetch.browser.js",
-      "react-native": "./fetch.native.js",
-      "node": "./fetch.js",
-      "default": "./fetch.js"
+      "types": "./lib/fetch.d.ts",
+      "browser": "./lib/fetch.browser.js",
+      "react-native": "./lib/fetch.native.js",
+      "node": "./lib/fetch.js",
+      "default": "./lib/fetch.js"
     },
     "./websocket": {
-      "browser": "./websocket.browser.js",
-      "react-native": "./websocket.native.js",
-      "node": "./websocket.js",
-      "default": "./websocket.js"
+      "types": "./lib/websocket.d.ts",
+      "browser": "./lib/websocket.browser.js",
+      "react-native": "./lib/websocket.native.js",
+      "node": "./lib/websocket.js",
+      "default": "./lib/websocket.js"
     },
     "./core": {
-      "browser": "./core.js",
-      "react-native": "./core.js",
-      "node": "./core.js",
-      "default": "./core.js"
+      "types": "./lib/core.d.ts",
+      "browser": "./lib/core.js",
+      "react-native": "./lib/core.js",
+      "node": "./lib/core.js",
+      "default": "./lib/core.js"
     },
     "./experimental/fetchival": {
-      "browser": "./experimental/fetchival.js",
-      "react-native": "./experimental/fetchival.js",
-      "node": "./experimental/fetchival.js",
-      "default": "./experimental/fetchival.js"
+      "types": "./lib/experimental/fetchival.d.ts",
+      "browser": "./lib/experimental/fetchival.js",
+      "react-native": "./lib/experimental/fetchival.js",
+      "node": "./lib/experimental/fetchival.js",
+      "default": "./lib/experimental/fetchival.js"
     },
     "./experimental/create-fetchival": {
-      "default": "./experimental/create-fetchival.js"
+      "types": "./lib/experimental/create-fetchival.d.ts",
+      "default": "./lib/experimental/create-fetchival.js"
     },
     "./fetchival": {
-      "browser": "./fetchival.browser.js",
-      "react-native": "./fetchival.js",
-      "node": "./fetchival.js",
-      "default": "./fetchival.js"
+      "types": "./lib/fetchival.d.ts",
+      "browser": "./lib/fetchival.browser.js",
+      "react-native": "./lib/fetchival.js",
+      "node": "./lib/fetchival.js",
+      "default": "./lib/fetchival.js"
     },
     "./create-fetchival": {
-      "default": "./create-fetchival.js"
+      "types": "./lib/create-fetchival.d.ts",
+      "default": "./lib/create-fetchival.js"
     },
     "./wretch": {
-      "browser": "./wretch.browser.js",
-      "react-native": "./wretch.js",
-      "node": "./wretch.js",
-      "default": "./wretch.js"
+      "types": "./lib/wretch.d.ts",
+      "browser": "./lib/wretch.browser.js",
+      "react-native": "./lib/wretch.js",
+      "node": "./lib/wretch.js",
+      "default": "./lib/wretch.js"
     },
     "./url": {
-      "browser": "./url.js",
-      "react-native": "./url.js",
-      "node": "./url.js",
-      "default": "./url.js"
+      "types": "./lib/url.d.ts",
+      "browser": "./lib/url.js",
+      "react-native": "./lib/url.js",
+      "node": "./lib/url.js",
+      "default": "./lib/url.js"
     }
   },
   "browser": {
-    "./fetch.js": "./fetch.browser.js",
-    "./fetchival.js": "./fetchival.browser.js",
-    "./index.js": "./index.browser.js",
-    "./websocket.js": "./websocket.browser.js",
-    "./wretch.js": "./wretch.browser.js"
+    "./lib/fetch.js": "./lib/fetch.browser.js",
+    "./lib/fetchival.js": "./lib/fetchival.browser.js",
+    "./lib/index.js": "./lib/index.browser.js",
+    "./lib/websocket.js": "./lib/websocket.browser.js",
+    "./lib/wretch.js": "./lib/wretch.browser.js"
   },
   "react-native": {
-    "./fetch.js": "./fetch.native.js",
-    "./websocket.js": "./websocket.native.js"
+    "./lib/fetch.js": "./lib/fetch.native.js",
+    "./lib/websocket.js": "./lib/websocket.native.js"
   },
   "files": [
-    "experimental/fetchival.js",
-    "experimental/create-fetchival.js",
-    "core.js",
-    "fetch.browser.js",
-    "fetch.native.js",
-    "fetch.js",
-    "websocket.browser.js",
-    "websocket.native.js",
-    "websocket.js",
-    "create-fetchival.js",
-    "fetchival.browser.js",
-    "fetchival.js",
-    "wretch.browser.js",
-    "wretch.js",
-    "url.js",
-    "index.browser.js",
-    "index.js",
+    "lib",
     "CHANGELOG.md"
   ],
   "scripts": {
-    "lint": "eslint . --ignore-path .gitignore",
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint src test --ext .ts --ignore-path .gitignore",
     "lint:fix": "npm run lint -- --fix",
-    "format": "prettier --write '**/*.{md,yml}'",
-    "test": "tape test/*.js | tap-spec",
+    "format": "prettier --write '**/*.{md,yml,ts,json}'",
+    "test": "npm run build && tsc -p tsconfig.test.json && tape '.cache/test/test/*.js' | tap-spec",
+    "prepack": "npm run build",
     "release": "semantic-release"
   },
   "author": "Exodus Movement Inc.",
@@ -116,14 +114,19 @@
     "@exodus/prettier": "^1.0.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/github": "^9.2.3",
+    "@types/node": "^24.12.2",
     "@types/tape": "^5.6.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "conventional-changelog-conventionalcommits": "^6.0.0",
     "eslint": "^8.49.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.3",
     "semantic-release": "^21.1.1",
     "tap-spec": "^5.0.0",
-    "tape": "^5.3.1"
+    "tape": "^5.3.1",
+    "typescript": "^6.0.3"
   },
   "prettier": "@exodus/prettier"
 }

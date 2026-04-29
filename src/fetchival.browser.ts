@@ -1,5 +1,5 @@
-const createFetchival = require('./create-fetchival')
+import createFetchival = require('./create-fetchival')
 
-module.exports = createFetchival({
+export = createFetchival({
   fetch: typeof fetch === 'undefined' ? null : (i, ...r) => globalThis.fetch(i, ...r),
 })
