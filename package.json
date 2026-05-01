@@ -94,15 +94,13 @@
     "wretch.js",
     "url.js",
     "index.browser.js",
-    "index.js",
-    "CHANGELOG.md"
+    "index.js"
   ],
   "scripts": {
     "lint": "eslint . --ignore-path .gitignore",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write '**/*.{md,yml}'",
-    "test": "tape test/*.js | tap-spec",
-    "release": "semantic-release"
+    "test": "tape test/*.js | tap-spec"
   },
   "author": "Exodus Movement Inc.",
   "license": "MIT",
@@ -121,7 +119,6 @@
     "eslint": "^8.49.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.3",
-    "semantic-release": "^21.1.1",
     "tap-spec": "^5.0.0",
     "tape": "^5.3.1"
   },
