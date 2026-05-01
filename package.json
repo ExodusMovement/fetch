@@ -9,14 +9,7 @@
   "bugs": {
     "url": "https://github.com/ExodusMovement/fetch/issues"
   },
-  "main": "index.js",
   "exports": {
-    ".": {
-      "browser": "./index.browser.js",
-      "react-native": "./index.js",
-      "node": "./index.js",
-      "default": "./index.js"
-    },
     "./fetch": {
       "browser": "./fetch.browser.js",
       "react-native": "./fetch.native.js",
@@ -28,12 +21,6 @@
       "react-native": "./websocket.native.js",
       "node": "./websocket.js",
       "default": "./websocket.js"
-    },
-    "./core": {
-      "browser": "./core.js",
-      "react-native": "./core.js",
-      "node": "./core.js",
-      "default": "./core.js"
     },
     "./experimental/fetchival": {
       "browser": "./experimental/fetchival.js",
