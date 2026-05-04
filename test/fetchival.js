@@ -1,5 +1,5 @@
 const tape = require('tape')
-const { fetchival } = require('../index')
+const fetchival = require('../fetchival.js')
 
 function Captor() {
   const captor = {
